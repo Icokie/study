@@ -1,0 +1,23 @@
+{
+  "name": "banners",
+  "version": "1.0.0",
+  "description": "banners",
+  "main": "index.js",
+  "scripts": {
+    "test": "none",
+    "dev": "webpack -w",
+    "build": "webpack -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "none"
+  },
+  "keywords": [
+    "banners"
+  ],
+  "author": "Icokie",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^3"
+  }
+}
