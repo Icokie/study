@@ -4,14 +4,21 @@ export default class Storage {
 
         this.storage = window.localStorage || 0;
 
-        this.index = this.storage.getItem('cacheBoxIndex');
+        if (this.storage) {
 
-        if(this.index) {
-           this.index = JSON.parse(this.index);
-        } else { this.index = {};}
+            this.index = this.storage.getItem('cacheBoxIndex');
+
+            if(this.index) {
+
+                this.index = JSON.parse(this.index);
+
+            } else {
+                this.index = {};
+            }
+
+        }
 
     }
-
 
     push(key, value, options) {
 
@@ -31,14 +38,6 @@ export default class Storage {
 
     }
 
-    purge(key) {
-
-        this.storage
-        &&
-        this.storage
-            .removeItem(key);
-
-    }
 
     updateIndex(key, value) {
 
