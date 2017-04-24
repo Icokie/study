@@ -8,7 +8,7 @@ module.exports = {
     context: path.join(__dirname, 'dev'),
     entry: {
         cacheBox: './cacheBox',
-        test: './test'
+        test: '../tests/indexTest'
     },
 
     output: {
@@ -25,12 +25,14 @@ module.exports = {
                 loader: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['es2015']
+                        presets: ['es2015', 'stage-0'],
+                        plugins: ['transform-runtime'],
+                        cacheDirectory: true
                     }
                 }
             }
         ]
 
-    }
+    },
 
 };

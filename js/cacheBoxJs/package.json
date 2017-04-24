@@ -1,7 +1,7 @@
 {
-  "name": "cacher",
+  "name": "cacheBoxJs",
   "version": "1.0.0",
-  "description": "cache ",
+  "description": "working with browser storage",
   "main": "index.js",
   "repository": "none",
   "author": "icokie",
@@ -10,13 +10,18 @@
     "babel-cli": "^6.23.0",
     "babel-core": "^6.24.1",
     "babel-loader": "^6.4.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "path": "^0.12.7",
-    "webpack": "2"
+    "path": "*",
+    "webpack": "2.4.1"
   },
   "scripts": {
     "build": "webpack -p",
     "dev": "webpack -w --colors"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.23.0",
+    "babel-runtime": "^6.23.0"
   }
 }

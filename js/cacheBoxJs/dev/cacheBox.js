@@ -15,16 +15,16 @@ export default  class CacheBox {
     set(key, data, options) {
         return new Promise((resolve, reject) => {
 
-                // adding time
-                options.added = this.time;
+            // adding time
+            options.added = this.time;
 
-                // adding expiration time
-                if (options.hasOwnProperty('expireIn')) {
-                    options.expired = this.time + options.expireIn;
-                }
+            // adding expiration time
+            if (options.hasOwnProperty('expireIn')) {
+                options.expired = this.time + options.expireIn;
+            }
 
-                this.storage.push(key, data, options);
-                resolve(data);
+            this.storage.push(key, data, options);
+            resolve(data);
 
         });
     }
@@ -38,12 +38,12 @@ export default  class CacheBox {
 
                 if (data) {
 
-                    resolve({data:data, status:1});
+                    resolve({data: data, status: 1});
 
                 } else {
 
                     this.request.get(url).then((data)=> {
-                        resolve({data:data.response, status:0});
+                        resolve({data: data.response, status: 0});
                     });
 
                 }
@@ -52,7 +52,7 @@ export default  class CacheBox {
             } else {
 
                 this.request.get(url).then((data)=> {
-                    resolve({data:data.response, status:0});
+                    resolve({data: data.response, status: 0});
                 });
 
             }
@@ -64,9 +64,9 @@ export default  class CacheBox {
 
         return new Promise((resolve, reject)=> {
 
-            this.get(url, cache).then((response)=>{
+            this.get(url, cache).then((response)=> {
 
-                if(1 == response.status) {
+                if (1 == response.status) {
 
                     resolve(response.data);
 
