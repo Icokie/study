@@ -36,8 +36,14 @@ export default class Storage {
     remove(key) {
         if (this.storage) {
             this.storage.removeItem(key);
-            delete this.index[key];
-            this.updateIndex();
+
+            if (this.index.hasOwnProperty(key)) {
+
+                delete this.index[key];
+                this.updateIndex();
+
+            }
+
         }
     }
 

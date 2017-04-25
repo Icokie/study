@@ -37,7 +37,7 @@ export default  class CacheBox {
 
                 let cached = this.storage.pull(url);
 
-                if (cached && this.validate(url, this.storage.index[url])) {
+                if (cached && this.validate(url, options, this.storage.index[url])) {
 
                     resolve(cached);
 
@@ -65,17 +65,34 @@ export default  class CacheBox {
 
     }
 
-    validate(key, object) {
+    validate(key, options, indexOptions) {
 
-        if (object && object.hasOwnProperty('expired')) {
+        if (indexOptions && indexOptions.hasOwnProperty('expired')) {
 
-            if (0 != object.expireIn && this.time > object.expired) {
+            if(options.expireIn == indexOptions.expireIn ) {
+
+                if (0 != options.expireIn && this.time > indexOptions.expired) {
+
+                    this.storage.remove(key);
+                    return 0;
+
+                } else {
+
+                    return 1;
+
+                }
+
+            } else {
+
                 this.storage.remove(key);
                 return 0;
 
-            } else {
-                return 1;
             }
+
+        } else {
+
+            this.storage.remove(key);
+            return 0;
 
         }
 
