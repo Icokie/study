@@ -19,7 +19,7 @@ export default class Requester {
             request.send();
 
             request.onload = (response) => {
-                resolve(response.target);
+                resolve(response.target.response);
             };
 
             request.onerror = (response) => {

@@ -29,57 +29,55 @@ export default  class CacheBox {
         });
     }
 
-    get(url, cache) {
+    get(url, options) {
+
         return new Promise((resolve, reject)=> {
 
-            if (cache) {
+            if (options && options.hasOwnProperty('expireIn')) {
 
-                let data = this.storage.pull(url);
+                let cached = this.storage.pull(url);
 
-                if (data) {
+                if (cached && this.validate(url, this.storage.index[url])) {
 
-                    resolve({data: data, status: 1});
+                    resolve(cached);
 
                 } else {
 
                     this.request.get(url).then((data)=> {
-                        resolve({data: data.response, status: 0});
-                    });
+                        resolve(data);
+                        this.set(url, data, options);
+                    })
 
                 }
 
 
             } else {
 
-                this.request.get(url).then((data)=> {
-                    resolve({data: data.response, status: 0});
-                });
+                this.request.get(url).then((response)=> {
+                    resolve(data);
+                    this.set(url, data, options);
+                })
 
             }
 
+
         });
+
     }
 
-    load(url, cache, options) {
+    validate(key, object) {
 
-        return new Promise((resolve, reject)=> {
+        if (object && object.hasOwnProperty('expired')) {
 
-            this.get(url, cache).then((response)=> {
+            if (0 != object.expireIn && this.time > object.expired) {
+                this.storage.remove(key);
+                return 0;
 
-                if (1 == response.status) {
+            } else {
+                return 1;
+            }
 
-                    resolve(response.data);
-
-                } else {
-
-                    resolve(response.data);
-                    this.set(url, response.data, options);
-
-                }
-
-            });
-
-        });
+        }
 
     }
 
