@@ -1,0 +1,67 @@
+html
+  font-size 14px
+
+body
+  font-size 1em
+  background #ddd
+
+
+.container
+  background #fff
+  margin 0 auto
+  width 20em
+  height 20em
+  border-radius 50%
+  border 1em solid
+  border-top-color red
+  border-bottom-color red
+  text-align center
+  //animation spin 600s linear infinite
+
+
+  >div
+    width 12em
+    border 4em solid blue
+    border-radius 50%
+
+
+
+
+.buttonGroup
+  display inline-block
+
+  button
+    display inline-block
+    height 3em
+    width 3em
+    font-size 2em
+    border none
+
+    &:hover
+    &.active
+      background green
+
+
+  &.top
+
+    button
+      &:first-child
+        border-top-left-radius 50%
+
+      &:last-child
+        border-top-right-radius 50%
+
+  &.bottom
+
+    button
+      &:first-child
+        border-bottom-left-radius 50%
+
+      &:last-child
+        border-bottom-right-radius 50%
+
+
+@keyframes spin {
+  0% {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+}
