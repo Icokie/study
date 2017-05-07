@@ -1,5 +1,6 @@
 const {resolve} = require('path');
 const webpack = require('webpack');
+const browserSync = require('browser-sync-webpack-plugin');
 
 module.exports = {
     context: resolve(__dirname, 'src'),
@@ -58,7 +59,7 @@ module.exports = {
                             minimize: true,
                             sourceMap: true,
                             camelCase: 'dashes',
-                            localIdentName: '[hash:base64:2]'
+                            localIdentName: '[hash:2]'
                         }
                     },
                     {loader: 'stylus-loader'}
@@ -80,5 +81,11 @@ module.exports = {
 
         new webpack.NamedModulesPlugin(),
         // prints more readable module names in the browser console on HMR updates
+
+        new browserSync({
+            host:'localhost',
+            proxy: 'http://localhost:8080',
+            reload: false
+        })
     ],
 };
