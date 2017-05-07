@@ -1,3 +1,5 @@
+$cornerRadius = 50%
+
 html
   font-size 14px
 
@@ -30,36 +32,35 @@ body
 .buttonGroup
   display inline-block
 
-  button
+  a
     display inline-block
-    height 3em
+    line-height 3em
     width 3em
     font-size 2em
     border none
+    background-color #ddd
 
     &:hover
+      background #333
+
     &.active
       background green
 
 
-  &.top
 
-    button
-      &:first-child
-        border-top-left-radius 50%
+.rounded
 
-      &:last-child
-        border-top-right-radius 50%
+  &.bottomLeft
+    border-bottom-left-radius $cornerRadius
 
-  &.bottom
+  &.bottomRight
+    border-bottom-right-radius $cornerRadius
 
-    button
-      &:first-child
-        border-bottom-left-radius 50%
+  &.topLeft
+    border-top-left-radius $cornerRadius
 
-      &:last-child
-        border-bottom-right-radius 50%
-
+  &.topRight
+    border-top-right-radius $cornerRadius
 
 @keyframes spin {
   0% {transform: rotate(0deg);}
