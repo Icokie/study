@@ -6,16 +6,16 @@ class Button extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {active: (this.props.active == this.props.id) ? 1 : 0}
     }
 
     render() {
 
         return (
-            <a
-                onClick={this.props.click}
+            <a  onClick={this.props.click}
                 id={this.props.id}
-                className={this.props.className}
+                className={`${(this.props.active(this.props.id)) ? styles.active : ''}
+                            ${this.props.className}`
+                }
             >
                 {this.props.id}
             </a>
@@ -37,7 +37,9 @@ let Sounds = ()=> {
 export default class App extends React.Component {
 
     constructor(props) {
+
         super(props);
+
         this.state = {
             score: 0,
             level: 0,
@@ -51,6 +53,8 @@ export default class App extends React.Component {
         this.playSound = this.playSound.bind(this);
         this.computerStep = this.computerStep.bind(this);
         this.playSequence = this.playSequence.bind(this);
+        this.activeButton = this.activeButton.bind(this);
+
     }
 
     handleClick(e) {
@@ -70,9 +74,6 @@ export default class App extends React.Component {
             let seqLength = this.state.sequence.length;
 
             let seq = this.state.sequence[this.state.counter];
-
-            console.log(this.state.active, seq);
-
 
             if(this.state.active == seq) {
 
@@ -99,18 +100,18 @@ export default class App extends React.Component {
                 this.playSequence();
                 this.setState((prevState, props)=>{
                     prevState.counter = 0;
-                    console.log('counter to 0')
                 })
 
             }
-
-
-
 
             this.deactivateButton();
 
         }, 300)
 
+    }
+
+    activeButton(id) {
+        return this.state.active == id;
     }
 
     playSound(sound) {
@@ -172,9 +173,11 @@ export default class App extends React.Component {
             this.setState((prevState, props)=> {
                 prevState.active = 0;
             });
-        }, 500);
+        }, 200);
 
     }
+
+
 
     componentDidMount() {
 
@@ -184,6 +187,7 @@ export default class App extends React.Component {
 
     }
 
+
     render() {
 
         return (
@@ -191,15 +195,14 @@ export default class App extends React.Component {
                 <div>
                     <div className={`${styles.buttonGroup}`}>
 
-                        <Button click={this.handleClick} active={this.state.active} id="1" className={`${styles.rounded} ${styles.topLeft}`}/>
-                        <Button click={this.handleClick} active={this.state.active} id="2"/>
-
+                        <Button click={this.handleClick} active={this.activeButton} id="1" className={`${styles.rounded} ${styles.topLeft}`}/>
+                        <Button click={this.handleClick} active={this.activeButton} id="2"/>
 
                     </div>
                     <div className={`${styles.buttonGroup}`}>
 
-                        <Button click={this.handleClick} active={this.state.active} id="3" />
-                        <Button click={this.handleClick} active={this.state.active} id="4" className={`${styles.rounded} ${styles.bottomRight}`}/>
+                        <Button click={this.handleClick} active={this.activeButton} id="3" />
+                        <Button click={this.handleClick} active={this.activeButton} id="4" className={`${styles.rounded} ${styles.bottomRight}`}/>
 
                     </div>
 
