@@ -1,68 +1,59 @@
-$cornerRadius = 50%
+*
+  box-sizing border-box
 
 html
   font-size 14px
 
 body
   font-size 1em
-  background #ddd
 
 
 .container
-  background #fff
+  width 320px
+  min-height 20em
   margin 0 auto
-  width 20em
-  height 20em
-  border-radius 50%
-  border 1em solid
-  border-top-color red
-  border-bottom-color red
+  border .5em solid
   text-align center
-  //animation spin 600s linear infinite
+  border-radius .5em
+  padding 1em
+
+.board
+  display inline-block
+
+.panel
+  margin 1em 0
 
 
-  >div
-    width 12em
-    border 4em solid blue
-    border-radius 50%
+  > *
+    display inline-block
+    width 50%
 
 
 
 
 .buttonGroup
-  display inline-block
 
   a
     display inline-block
-    line-height 3em
-    width 3em
-    font-size 2em
-    border none
-    background-color #ddd
+    padding 0 1em
+    line-height 2em
+    font-size 3em
+    margin .2em
+    background #ddd
 
-    &:hover
-      background #333
 
     &.active
-      background green
+      background red
 
 
 
-.rounded
+a:hover
+  cursor pointer
 
-  &.bottomLeft
-    border-bottom-left-radius $cornerRadius
 
-  &.bottomRight
-    border-bottom-right-radius $cornerRadius
+//menu
 
-  &.topLeft
-    border-top-left-radius $cornerRadius
-
-  &.topRight
-    border-top-right-radius $cornerRadius
-
-@keyframes spin {
-  0% {transform: rotate(0deg);}
-  100% {transform: rotate(360deg);}
-}
+.button
+  line-height 2em
+  padding 0 .5em
+  font-size 2em

@@ -11,11 +11,11 @@ class Button extends React.Component {
     render() {
 
         return (
-            <a  onClick={this.props.click}
-                id={this.props.id}
-                className={`${(this.props.active(this.props.id)) ? styles.active : ''}
+            <a onClick={this.props.click}
+               id={this.props.id}
+               className={`${(this.props.active(this.props.id)) ? styles.active : ''}
                             ${this.props.className}`
-                }
+               }
             >
                 {this.props.id}
             </a>
@@ -34,7 +34,7 @@ let Sounds = ()=> {
     )
 };
 
-export default class App extends React.Component {
+class Board extends React.Component {
 
     constructor(props) {
 
@@ -46,6 +46,7 @@ export default class App extends React.Component {
             active: 0,
             sequence: [],
             counter: 0,
+            menuActive: 0,
 
         };
 
@@ -68,27 +69,28 @@ export default class App extends React.Component {
         this.playSound(button.id);
 
 
-        setTimeout(()=>{
+        setTimeout(()=> {
 
 
             let seqLength = this.state.sequence.length;
 
             let seq = this.state.sequence[this.state.counter];
 
-            if(this.state.active == seq) {
+            if (this.state.active == seq) {
 
-                if(this.state.counter + 1 == seqLength) {
+                if (this.state.counter + 1 == seqLength) {
 
-                    this.computerStep().then(()=>{
+                    this.computerStep().then(()=> {
                         this.playSequence();
-                        this.setState((prevState, props)=>{
+                        this.setState((prevState, props)=> {
                             prevState.counter = 0;
+                            prevState.score +=1;
                         });
                     })
 
                 }
 
-                this.setState((prevState,props)=>{
+                this.setState((prevState, props)=> {
 
                     prevState.counter += 1;
 
@@ -98,7 +100,7 @@ export default class App extends React.Component {
 
                 alert('error');
                 this.playSequence();
-                this.setState((prevState, props)=>{
+                this.setState((prevState, props)=> {
                     prevState.counter = 0;
                 })
 
@@ -178,7 +180,6 @@ export default class App extends React.Component {
     }
 
 
-
     componentDidMount() {
 
         this.computerStep().then(()=> {
@@ -191,29 +192,78 @@ export default class App extends React.Component {
     render() {
 
         return (
-            <div className={styles.container}>
-                <div>
-                    <div className={`${styles.buttonGroup}`}>
 
-                        <Button click={this.handleClick} active={this.activeButton} id="1" className={`${styles.rounded} ${styles.topLeft}`}/>
-                        <Button click={this.handleClick} active={this.activeButton} id="2"/>
+            <div className={styles.board}>
 
-                    </div>
-                    <div className={`${styles.buttonGroup}`}>
+                <div className={styles.panel}>
 
-                        <Button click={this.handleClick} active={this.activeButton} id="3" />
-                        <Button click={this.handleClick} active={this.activeButton} id="4" className={`${styles.rounded} ${styles.bottomRight}`}/>
-
-                    </div>
-
-                    <Sounds/>
+                    <span className={styles.pullLeft}>score: {this.state.score}</span>
+                    <span className={styles.pullRight}>level: {this.state.level}</span>
 
                 </div>
 
+                <div className={`${styles.buttonGroup}`}>
+
+                    <Button click={this.handleClick} active={this.activeButton} id="1"/>
+                    <Button click={this.handleClick} active={this.activeButton} id="2"/>
+
+                </div>
+                <div className={`${styles.buttonGroup}`}>
+
+                    <Button click={this.handleClick} active={this.activeButton} id="3"/>
+                    <Button click={this.handleClick} active={this.activeButton} id="4"/>
+
+                </div>
+
+                <Sounds/>
+
             </div>
+
         )
     }
 }
 
+class Menu extends React.Component {
+
+    render() {
+        return(
+          <div className={styles.menu}>
+              <h1>Simon game</h1>
+              <button className={styles.button} onClick={this.props.startGame}>Start</button>
+          </div>
+        );
+    }
+}
+
+export default class App extends React.Component {
+
+    constructor(props) {
+
+        super(props);
+
+        this.state = {
+            menu: 1
+        };
+
+        this.startGame = this.startGame.bind(this);
+
+    }
+
+
+    startGame() {
+        this.setState((prevState, props)=>{
+            prevState.menu = 0;
+        })
+    }
+
+    render() {
+        return (
+            <div className={styles.container}>
+                {this.state.menu ? <Menu startGame={this.startGame}/> : <Board/>}
+            </div>
+        );
+    }
+
+}
 
 // export default App;
