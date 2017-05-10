@@ -19,8 +19,8 @@ export default  class CacheBox {
             options.added = this.time;
 
             // adding expiration time
-            if (options.hasOwnProperty('expireIn')) {
-                options.expired = this.time + options.expireIn;
+            if (options.hasOwnProperty('expire')) {
+                options.expired = this.time + options.expire;
             }
 
             this.storage.push(key, data, options);
@@ -29,11 +29,11 @@ export default  class CacheBox {
         });
     }
 
-    get(url, options) {
+    get(url, options = {expire: 0}) {
 
         return new Promise((resolve, reject)=> {
 
-            if (options && options.hasOwnProperty('expireIn')) {
+            if (options && options.hasOwnProperty('expire')) {
 
                 let cached = this.storage.pull(url);
 
@@ -69,9 +69,9 @@ export default  class CacheBox {
 
         if (indexOptions && indexOptions.hasOwnProperty('expired')) {
 
-            if(options.expireIn == indexOptions.expireIn ) {
+            if(options.expire == indexOptions.expire ) {
 
-                if (0 != options.expireIn && this.time > indexOptions.expired) {
+                if (0 != options.expire && this.time > indexOptions.expired) {
 
                     this.storage.remove(key);
                     return 0;
