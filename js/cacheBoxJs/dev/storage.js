@@ -1,8 +1,16 @@
 export default class Storage {
 
-    constructor() {
+    constructor(options) {
 
-        this.storage = window.localStorage || 0;
+        if ('session' == options['type']) {
+
+            this.storage = window.sessionStorage || 0;
+
+        } else if ('local' == options['type']) {
+
+            this.storage = window.localStorage || 0;
+
+        }
 
         if (this.storage) {
 
@@ -13,7 +21,9 @@ export default class Storage {
                 this.index = JSON.parse(this.index);
 
             } else {
+
                 this.index = {};
+
             }
 
         }

@@ -3,10 +3,10 @@ import Storage from "./storage";
 
 export default  class CacheBox {
 
-    constructor() {
+    constructor(options) {
 
         this.request = new Requester();
-        this.storage = new Storage();
+        this.storage = new Storage(options || {type: 'local'});
         this.time = new Date().getTime();
 
     }
@@ -69,7 +69,7 @@ export default  class CacheBox {
 
         if (indexOptions && indexOptions.hasOwnProperty('expired')) {
 
-            if(options.expire == indexOptions.expire ) {
+            if (options.expire == indexOptions.expire) {
 
                 if (0 != options.expire && this.time > indexOptions.expired) {
 
