@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack -w --config ./webpack/common.config.js"
+    "dev": "webpack -w --config ./webpack/common.config.js",
+    "bs": "browser-sync start -s './public' -f './public/build/*.*' "
   },
   "keywords": [],
   "author": "",
@@ -14,6 +15,7 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
     "backbone": "^1.3.3",
+    "browser-sync": "^2.18.13",
     "eslint": "^4.8.0",
     "eslint-config-standart": "^0.2.0",
     "eslint-plugin-promise": "^3.5.0",
