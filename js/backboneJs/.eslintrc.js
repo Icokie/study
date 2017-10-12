@@ -16,15 +16,11 @@ module.exports = {
             "error",
             "unix"
         ],
-        "quotes": [
-            "single",
-            "backtick"
-        ],
         "semi": [
             "error",
             "never"
         ],
-        "padded-blocks":[
+        "padded-blocks": [
             "error",
             "always"
         ]

@@ -1,27 +1,34 @@
 {
-  "name": "mybackboneproject",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "webpack -w --config ./webpack/common.config.js",
-    "bs": "browser-sync start -s './public' -f './public/build/*.*' "
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.0",
-    "backbone": "^1.3.3",
-    "browser-sync": "^2.18.13",
-    "eslint": "^4.8.0",
-    "eslint-config-standart": "^0.2.0",
-    "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "jquery": "^3.2.1",
-    "underscore": "^1.8.3",
-    "webpack": "^3.6.0"
-  }
+    "name": "mybackboneproject",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "webpack -w --config ./webpack/common.config.js",
+        "bs": "browser-sync start -s './public' -f './public/build/*.*' ",
+        "server": "node ./server.js",
+        "start": "npm run dev & npm run bs"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "babel-core": "^6.26.0",
+        "babel-loader": "^7.1.2",
+        "babel-preset-env": "^1.6.0",
+        "backbone": "^1.3.3",
+        "bootstrap": "^3.3.7",
+        "browser-sync": "^2.18.13",
+        "eslint": "^4.8.0",
+        "eslint-config-standart": "^0.2.0",
+        "eslint-plugin-promise": "^3.5.0",
+        "eslint-plugin-standard": "^3.0.1",
+        "express": "^4.16.1",
+        "extract-loader": "^1.0.1",
+        "jquery": "^3.2.1",
+        "stylus": "^0.54.5",
+        "stylus-loader": "^3.0.1",
+        "underscore": "^1.8.3",
+        "webpack": "^3.6.0"
+    }
 }

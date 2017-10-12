@@ -1,5 +1,5 @@
 import _ from 'underscore'
 
-const Artist = _.template(`<div>hello</div>`)
+const Artist = _.template(`<div>artist</div>`)
 
 export default Artist

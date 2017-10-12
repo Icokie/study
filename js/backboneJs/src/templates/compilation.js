@@ -1,5 +1,5 @@
 import _ from 'underscore'
 
-const Compilation = _.template(`<div>hello</div>`)
+const Compilation = _.template(`<div>compilation</div>`)
 
 export default Compilation
