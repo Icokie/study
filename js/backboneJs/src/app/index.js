@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import _ from 'underscore'
+import 'underscore'
 import Backbone from 'backbone'
 import PostTemplate from './templates/post'
 

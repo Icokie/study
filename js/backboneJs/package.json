@@ -5,9 +5,9 @@
     "main": "index.js",
     "scripts": {
         "dev": "webpack -w --config ./webpack/common.config.js",
-        "bs": "browser-sync start -s './public' -f './public/build/*.*' ",
-        "server": "node ./server.js",
-        "start": "npm run dev & npm run bs"
+        "bs": "browser-sync start -p './public' -f './public/build/*.*' ",
+        "server": "nodemon ./src/server/index.js",
+        "start": "npm run dev & npm run server && npm run bs"
     },
     "keywords": [],
     "author": "",
@@ -23,9 +23,10 @@
         "eslint-config-standart": "^0.2.0",
         "eslint-plugin-promise": "^3.5.0",
         "eslint-plugin-standard": "^3.0.1",
-        "express": "^4.16.1",
+        "express": "^4.16.2",
         "extract-loader": "^1.0.1",
         "jquery": "^3.2.1",
+        "nodemon": "^1.12.1",
         "stylus": "^0.54.5",
         "stylus-loader": "^3.0.1",
         "underscore": "^1.8.3",

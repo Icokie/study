@@ -12,4 +12,4 @@ const PagePostView = Backbone.View.extend({
     template
 });
 
-export {TrackPostModel, PagePostView}
+export {TrackPostModel, PagePostView};

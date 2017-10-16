@@ -1,28 +1,24 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "es6": true
+    'env': {
+        'browser': true,
+        'es6': true
     },
-    "extends": "standart",
-    "parserOptions": {
-        "sourceType": "module"
+    'extends': 'standart',
+    'parserOptions': {
+        'sourceType': 'module'
     },
-    "rules": {
-        "indent": [
-            "error",
+    'rules': {
+        'indent': [
+            'error',
             4
         ],
-        "linebreak-style": [
-            "error",
-            "unix"
+        'linebreak-style': [
+            'error',
+            'unix'
         ],
-        "semi": [
-            "error",
-            "never"
-        ],
-        "padded-blocks": [
-            "error",
-            "always"
+        'semi': [
+            'error',
+            'always'
         ]
     }
 };
